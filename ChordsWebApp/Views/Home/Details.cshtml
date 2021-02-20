@@ -1,0 +1,131 @@
+﻿@model ChordsWebApp.Models.Chords
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h4>@Html.DisplayFor(model => model.Artist)  -  <span style="font-size: 1.1rem;">@Html.DisplayFor(model => model.Song)</span></h4>
+
+<div>
+    <hr />
+    <dl class="row">
+
+        <div class="col-8">
+            <dd>
+                <div id="chords" class="display-field" style="white-space: pre-wrap;">@Model.Content</div>
+            </dd>
+        </div>
+
+        <div class="col-4">
+            <dt>
+                <button type="button" onclick="FontSizePlus()" class="btn btn-light">Font + </button>
+                <button type="button" onclick="FontSizeMinus()" class="btn btn-light">Font - </button>
+                <button type="button" onclick="FontSizeDefault()" class="btn btn-light">Font reset </button>
+                <button type="button" onclick="PrintElem()" class="btn btn-light">Print</button>
+            </dt>
+            <hr />
+            <dt>
+                @Html.DisplayNameFor(model => model.Capo)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Capo)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Key)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Key)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DateAdded)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DateAdded)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DateEdited)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DateEdited)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Uploader)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Uploader)
+            </dd>
+            <dd>
+                <hr />
+            </dd>
+            <dt>
+                @*@Html.DisplayNameFor(model => model.Capo)*@
+            </dt>
+            @if (ViewBag.PhotoSrc != null)
+            {
+                <dd>
+                    <img src="@ViewBag.PhotoSrc" class="col-12" />
+                </dd>
+                <dd>
+                    <hr />
+                </dd>
+            }
+
+
+        </div>
+
+    </dl>
+</div>
+
+<script>
+    function FontSizePlus() {
+
+        var el = document.getElementById('chords');
+        var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
+        var fontSize = parseFloat(style);
+
+        el.style.fontSize = (fontSize + 1) + 'px';
+
+        //window.alert("sometext");
+    }
+
+    function FontSizeMinus() {
+
+        var el = document.getElementById('chords');
+        var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
+        var fontSize = parseFloat(style);
+
+        el.style.fontSize = (fontSize - 1) + 'px';
+    }
+
+    function FontSizeDefault() {
+
+        document.getElementById("chords").style.fontSize = "16px";
+
+    }
+
+    function PrintElem() {
+
+        var el = document.getElementById('chords');
+        var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
+        var fontSize = parseFloat(style);
+
+        //el.style.fontSize = (fontSize) + 'px';
+
+
+        var mywindow = window.open("resizable=yes,top=500,left=500,width=400,height=400");
+        mywindow.document.write('<html>');
+        mywindow.document.write('<h4>@Html.DisplayFor(model => model.Artist)  -  <span style="font-size: 1.1rem;">@Html.DisplayFor(model => model.Song)</span></h4>');
+        mywindow.document.write('<h5 style="font-weight: 200; font-style: italic;">@Html.DisplayNameFor(model => model.Capo)  -  <span style="font-size: 0.8rem;">@Html.DisplayFor(model => model.Capo)</span></h5>');
+        mywindow.document.write('<body >');
+        mywindow.document.write('<div id="chords" class="display-field" style="white-space: pre-wrap; font-size: '+fontSize+'px;">@Model.Content</div>');
+        mywindow.document.write('</body></html>');
+
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10*/
+
+        mywindow.print();
+        mywindow.close();
+
+        return true;
+    }
+</script>

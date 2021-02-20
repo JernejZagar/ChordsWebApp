@@ -1,0 +1,75 @@
+﻿@model ChordsWebApp.Models.Chords
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Chords</h4>
+<hr />
+
+<form asp-action="Create">
+    <div class="row">
+        <div class="text-center col-4">
+            @*<form asp-action="Create">*@
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Artist" class="control-label"></label>
+                <input asp-for="Artist" class="form-control" />
+                <span asp-validation-for="Artist" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Song" class="control-label"></label>
+                <input asp-for="Song" class="form-control" />
+                <span asp-validation-for="Song" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Capo" class="control-label"></label>
+                <input asp-for="Capo" class="form-control" />
+                <span asp-validation-for="Capo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Key" class="control-label"></label>
+                <input asp-for="Key" class="form-control" />
+                <span asp-validation-for="Key" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="DateAdded" class="control-label"></label>
+                <input asp-for="DateAdded" class="form-control" />
+                <span asp-validation-for="DateAdded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateEdited" class="control-label"></label>
+                <input asp-for="DateEdited" class="form-control" />
+                <span asp-validation-for="DateEdited" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Uploader" class="control-label"></label>
+                <input asp-for="Uploader" class="form-control" />
+                @*<span asp-validation-for="Uploader" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+            @*</form>*@
+        </div>
+
+        <div class="text-center col-8">
+            <div class="form-group">
+                <label asp-for="Content" class="control-label"></label>
+                <textarea asp-for="Content" class="form-control" aria-label="With textarea" rows="30"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+        </div>
+
+    </div>
+ </form>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
