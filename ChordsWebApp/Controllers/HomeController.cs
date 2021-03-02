@@ -27,8 +27,8 @@ namespace ChordsWebApp.Controllers
         public async Task<IActionResult> IndexAsync(string sortOrder, string searchString)
         {
             
-            ViewBag.ArtistSortParam = String.IsNullOrEmpty(sortOrder) ? "artist" : "";
-            ViewBag.SongSortParam = String.IsNullOrEmpty(sortOrder) ? "song" : "";
+            ViewBag.ArtistSortParam = String.IsNullOrEmpty(sortOrder) ? "artist_desc" : "";
+            ViewBag.SongSortParam = sortOrder == "Song" ? "song_desc" : "Song";
             ViewBag.Searched = searchString;
 
             //inicializacija baze
@@ -43,11 +43,14 @@ namespace ChordsWebApp.Controllers
 
             switch (sortOrder)
             {
-                case "artist":
+                case "artist_desc":
                     chordsList = chordsList.OrderByDescending(s => s.Artist);
                     break;
-                case "song":
+                case "Song":
                     chordsList = chordsList.OrderBy(s => s.Song);
+                    break;
+                case "song_desc":
+                    chordsList = chordsList.OrderByDescending(s => s.Song);
                     break;
                 default:
                     chordsList = chordsList.OrderBy(s => s.Artist);
