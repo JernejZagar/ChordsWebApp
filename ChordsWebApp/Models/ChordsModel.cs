@@ -31,7 +31,7 @@ namespace ChordsWebApp.Models
         [Required(AllowEmptyStrings = false)]
         public string Content { get; set; }
 
-        //[Display(Name = "Datum dodajanja")]
+        //[Display(Name = "Date Added")]
         public DateTime DateAdded { get; set; }
 
         //[Display(Name = "Datum spreminjanja")]
